@@ -1,0 +1,730 @@
+/* styles.css */
+/* Flowmodoro Timer with East Asian + Anime Aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Prevent unwanted horizontal scroll */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 🚫 no sideways scrolling */
+    width: 100%;
+    max-width: 100%;
+}
+
+body {
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-y: auto;
+
+    /* Enhanced background with ping-pong animation for seamless looping */
+    background: url("nature.gif") center center fixed;
+    background-size: cover;
+    position: relative;
+    animation: backgroundPingPong 20s ease-in-out infinite alternate;
+}
+
+/* Dim overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(10, 10, 15, 0.5);
+    z-index: 0;
+    backdrop-filter: blur(2px);
+}
+
+/* Particles Layer */
+#particles-container {
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0.5;
+    overflow: hidden;
+}
+
+.petal, .snowflake {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    opacity: 0.9;
+    top: -50px;
+}
+
+.petal {
+    background: url("sakura.png") no-repeat center/contain;
+}
+
+.snowflake {
+    background: url("snow.png") no-repeat center/contain;
+}
+
+/* Petal animations */
+.petal-drift-left {
+    animation: fallDriftLeft linear forwards;
+}
+
+.petal-drift-right {
+    animation: fallDriftRight linear forwards;
+}
+
+.petal-spiral {
+    animation: fallSpiral linear forwards;
+}
+
+/* Realistic left-drifting fall with oscillating wind effect */
+@keyframes fallDriftLeft {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    15% {
+        transform: translateY(15vh) translateX(-30px) rotate(45deg) scale(0.95);
+        opacity: 0.9;
+    }
+    30% {
+        transform: translateY(35vh) translateX(0px) rotate(90deg) scale(0.9);
+        opacity: 0.8;
+    }
+    45% {
+        transform: translateY(50vh) translateX(-60px) rotate(135deg) scale(0.87);
+        opacity: 0.75;
+    }
+    60% {
+        transform: translateY(65vh) translateX(-30px) rotate(180deg) scale(0.85);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translateY(80vh) translateX(-90px) rotate(225deg) scale(0.82);
+        opacity: 0.65;
+    }
+    90% {
+        transform: translateY(95vh) translateX(-60px) rotate(315deg) scale(0.78);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(110vh) translateX(-100px) rotate(360deg) scale(0.75);
+        opacity: 0;
+    }
+}
+
+/* Realistic right-drifting fall with oscillating wind effect */
+@keyframes fallDriftRight {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    20% {
+        transform: translateY(20vh) translateX(30px) rotate(-45deg) scale(0.95);
+        opacity: 0.9;
+    }
+    35% {
+        transform: translateY(35vh) translateX(0px) rotate(-90deg) scale(0.9);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(50vh) translateX(60px) rotate(-135deg) scale(0.87);
+        opacity: 0.75;
+    }
+    65% {
+        transform: translateY(65vh) translateX(30px) rotate(-180deg) scale(0.85);
+        opacity: 0.7;
+    }
+    80% {
+        transform: translateY(80vh) translateX(90px) rotate(-225deg) scale(0.82);
+        opacity: 0.65;
+    }
+    95% {
+        transform: translateY(95vh) translateX(60px) rotate(-315deg) scale(0.78);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(110vh) translateX(100px) rotate(-360deg) scale(0.75);
+        opacity: 0;
+    }
+}
+
+/* Spiral falling motion with realistic wind-influenced physics */
+@keyframes fallSpiral {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    12% {
+        transform: translateY(12vh) translateX(30px) rotate(60deg) scale(0.98);
+        opacity: 0.95;
+    }
+    25% {
+        transform: translateY(28vh) translateX(0px) rotate(120deg) scale(0.95);
+        opacity: 0.9;
+    }
+    37% {
+        transform: translateY(42vh) translateX(50px) rotate(200deg) scale(0.92);
+        opacity: 0.85;
+    }
+    50% {
+        transform: translateY(58vh) translateX(0px) rotate(280deg) scale(0.88);
+        opacity: 0.8;
+    }
+    62% {
+        transform: translateY(72vh) translateX(40px) rotate(360deg) scale(0.85);
+        opacity: 0.75;
+    }
+    75% {
+        transform: translateY(85vh) translateX(-20px) rotate(440deg) scale(0.82);
+        opacity: 0.7;
+    }
+    87% {
+        transform: translateY(95vh) translateX(20px) rotate(520deg) scale(0.78);
+        opacity: 0.65;
+    }
+    100% {
+        transform: translateY(110vh) translateX(0) rotate(600deg) scale(0.75);
+        opacity: 0;
+    }
+}
+
+/* Snow animations */
+.snow-drift-left {
+    animation: snowFallLeft linear forwards;
+}
+
+.snow-drift-right {
+    animation: snowFallRight linear forwards;
+}
+
+/* Gentle left sway snow fall */
+@keyframes snowFallLeft {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(25vh) translateX(-10px) rotate(30deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(50vh) translateX(0) rotate(60deg);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(75vh) translateX(-10px) rotate(90deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(110vh) translateX(0) rotate(120deg);
+        opacity: 0;
+    }
+}
+
+/* Gentle right sway snow fall */
+@keyframes snowFallRight {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(25vh) translateX(10px) rotate(-30deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(50vh) translateX(0) rotate(-60deg);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(75vh) translateX(10px) rotate(-90deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(110vh) translateX(0) rotate(-120deg);
+        opacity: 0;
+    }
+}
+
+/* Keep content above particles */
+header, main { position: relative; z-index: 1; }
+
+/* ---------- HEADER ---------- */
+header {
+    width: 100%;
+    text-align: center;
+    padding: 50px 20px 30px;
+    background: rgba(30, 30, 40, 0.7);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid rgba(255, 153, 153, 0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+h1 {
+    font-size: 2.8em;
+    margin: 0;
+    font-family: 'Press Start 2P', monospace;
+    color: #FFB7C5; /* Default spring pink */
+    text-shadow: 0 0 8px rgba(255, 183, 197, 0.6),
+                 0 0 15px rgba(255, 153, 153, 0.4),
+                 0 0 25px rgba(255, 200, 200, 0.3);
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+
+/* Standby mode (Spring): Pastel greens, pinks, blues */
+.standby-mode header h1 {
+    color: #FFB7C5; /* Cherry blossom pink */
+    text-shadow: 0 0 8px rgba(255, 183, 197, 0.6),
+                 0 0 15px rgba(255, 153, 153, 0.4),
+                 0 0 25px rgba(255, 200, 200, 0.3);
+}
+
+/* Work mode (Winter): Icy blues, whites, grays */
+.work-mode header h1 {
+    color: #ADD8E6; /* Light blue */
+    text-shadow: 0 0 8px rgba(173, 216, 230, 0.6),
+                 0 0 15px rgba(135, 206, 250, 0.4),
+                 0 0 25px rgba(176, 224, 230, 0.3);
+}
+
+/* Break mode (Summer): Vibrant pinks, greens, turquoises */
+.break-mode header h1 {
+    color: #FF69B4; /* Hot pink */
+    text-shadow: 0 0 8px rgba(255, 105, 180, 0.6),
+                 0 0 15px rgba(255, 20, 147, 0.4),
+                 0 0 25px rgba(255, 105, 180, 0.3);
+}
+
+/* ---------- MAIN LAYOUT ---------- */
+main {
+    max-width: 700px;
+    width: 100%;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* ---------- TASK SECTION ---------- */
+#task-section {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+#tasks-label {
+    font-size: 1.4em;
+    font-family: 'Press Start 2P', monospace;
+    color: #FFB7C5;
+    text-shadow: 0 0 8px rgba(255, 183, 197, 0.5);
+    background: rgba(144, 238, 144, 0.2);
+    border: 2px dashed #FFB7C5;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#tasks-label::before, #tasks-label::after {
+    content: "📋";
+    font-size: 1.2em;
+}
+#task-input { 
+    display: flex; 
+    gap: 12px; 
+    margin-bottom: 20px; 
+}
+#task-input input {
+    flex: 1; 
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    background: rgba(30,30,40,0.5);
+    color: #f2f2f7;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1em;
+    text-shadow: 0 0 4px rgba(255,255,255,0.2);
+}
+#task-input input:focus {
+    border-color: #99ccff;
+    box-shadow: 0 0 8px rgba(153,204,255,0.4);
+    outline: none;
+}
+#task-input button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #cc99ff, #b366ff);
+    border: none; 
+    border-radius: 10px;
+    color: #fff; 
+    cursor: pointer;
+    font-family: 'Press Start 2P', monospace;
+    text-transform: uppercase;
+}
+#task-input button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(179,102,255,0.4);
+}
+
+#task-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+}
+#task-list li {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px dashed rgba(255,255,255,0.2);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.05em;
+    color: #e6e6f2;
+}
+#task-list li.current {
+    background: rgba(255,183,197,0.15);
+    font-weight: bold;
+    color: #ffb7c5;
+}
+#task-list li button {
+    background: none; 
+    border: none;
+    color: #ff9999; 
+    cursor: pointer;
+    font-size: 1.2em;
+}
+#task-list li button:hover { 
+    color: #ff6666; 
+}
+
+/* ---------- TIMER SECTION ---------- */
+#timer-section {
+    background: rgba(255, 255, 255, 0.08); /* Default */
+    border-radius: 20px;
+    padding: 50px 30px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+    position: relative;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+#mode {
+    font-size: 1.6em;
+    font-family: 'Press Start 2P', monospace;
+    letter-spacing: 2px;
+    padding: 10px 40px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.5s ease;
+}
+#mode::before, #mode::after {
+    font-size: 1.2em;
+    position: static;
+}
+#time {
+    font-size: 4.8em;
+    font-weight: bold;
+    color: #FFFACD; /* Default lemon chiffon */
+    margin: 20px 0;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 12px rgba(255, 250, 205, 0.6),
+                 0 0 20px rgba(255, 250, 205, 0.4);
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+#total-time {
+    font-size: 1.2em;
+    color: #90EE90; /* Default light green */
+    margin-bottom: 25px;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 5px rgba(144, 238, 144, 0.4);
+    background: rgba(144, 238, 144, 0.3); /* Higher opacity for legibility */
+    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    transition: color 0.5s ease, text-shadow 0.5s ease, background 0.5s ease;
+}
+#timer-buttons {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 25px;
+}
+#timer-buttons button {
+    padding: 14px 28px;
+    border: none; 
+    border-radius: 10px;
+    color: #fff; 
+    cursor: pointer;
+    font-family: 'Press Start 2P', monospace;
+    text-transform: uppercase;
+    transition: background 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+#timer-buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(179,102,255,0.4);
+}
+#start-btn { 
+    background: linear-gradient(135deg, #FFB7C5, #90EE90); /* Default spring */ 
+}
+#stop-btn { 
+    background: linear-gradient(135deg, #87CEEB, #FFFACD); 
+}
+#stop-btn:disabled {
+    background: linear-gradient(135deg, #666666, #999999);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+#reset-btn { 
+    background: linear-gradient(135deg, #FFB7C5, #87CEEB); 
+}
+
+/* Standby mode styles: Spring pastels */
+.standby-mode #timer-section {
+    background: rgba(255, 183, 197, 0.15); /* Soft pink tint */
+}
+.standby-mode #mode {
+    color: #87CEEB; /* Sky blue */
+    text-shadow: 0 0 8px rgba(135, 206, 235, 0.5);
+    background: rgba(144, 238, 144, 0.2); /* Light green */
+    border: 2px dashed #FFB7C5; /* Pink dashed */
+    box-shadow: 0 0 10px rgba(255, 183, 197, 0.7), /* Spring halo */
+                0 0 20px rgba(255, 183, 197, 0.5);
+}
+.standby-mode #mode::before {
+    content: "🌸";
+}
+.standby-mode #mode::after {
+    content: "🌸";
+}
+.standby-mode #time {
+    color: #FFFACD; /* Lemon chiffon */
+    text-shadow: 0 0 12px rgba(255, 250, 205, 0.6),
+                 0 0 20px rgba(255, 250, 205, 0.4);
+}
+.standby-mode #total-time {
+    color: #90EE90; /* Light green */
+    text-shadow: 0 0 5px rgba(144, 238, 144, 0.4);
+    background: rgba(144, 238, 144, 0.3); /* Light green bg */
+}
+.standby-mode #start-btn {
+    background: linear-gradient(135deg, #FFB7C5, #90EE90);
+}
+.standby-mode #stop-btn {
+    background: linear-gradient(135deg, #87CEEB, #FFFACD);
+}
+.standby-mode #reset-btn {
+    background: linear-gradient(135deg, #FFB7C5, #87CEEB);
+}
+
+/* Work mode styles: Winter icy blues, whites, grays */
+.work-mode #timer-section {
+    background: rgba(173, 216, 230, 0.2); /* Light blue tint */
+}
+.work-mode #mode {
+    color: #4682B4; /* Steel blue */
+    text-shadow: 0 0 8px rgba(70, 130, 180, 0.5);
+    background: rgba(240, 248, 255, 0.3); /* Alice blue */
+    border: 2px solid #ADD8E6; /* Light blue */
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.7), /* Winter halo */
+                0 0 20px rgba(173, 216, 230, 0.5);
+}
+.work-mode #mode::before {
+    content: "❄️";
+}
+.work-mode #mode::after {
+    content: "❄️";
+}
+.work-mode #time {
+    color: #F0F8FF; /* Alice blue */
+    text-shadow: 0 0 12px rgba(240, 248, 255, 0.6),
+                 0 0 20px rgba(176, 196, 222, 0.4);
+}
+.work-mode #total-time {
+    color: #ADD8E6; /* Light blue */
+    text-shadow: 0 0 5px rgba(173, 216, 230, 0.4);
+    background: rgba(173, 216, 230, 0.3); /* Light blue bg */
+}
+.work-mode #start-btn {
+    background: linear-gradient(135deg, #00008B, #4682B4); /* Dark blue to steel blue */
+}
+.work-mode #stop-btn {
+    background: linear-gradient(135deg, #4169E1, #ADD8E6); /* Royal blue to light blue */
+}
+.work-mode #reset-btn {
+    background: linear-gradient(135deg, #7B68EE, #F0F8FF); /* Slate blue to alice blue */
+}
+
+/* Break mode styles: Summer vibrant */
+.break-mode #timer-section {
+    background: rgba(64, 224, 208, 0.2); /* Turquoise tint */
+}
+.break-mode #mode {
+    color: #40E0D0; /* Turquoise */
+    text-shadow: 0 0 8px rgba(64, 224, 208, 0.6);
+    background: rgba(255, 215, 0, 0.2); /* Gold tint */
+    border: 2px solid #FFD700; /* Gold */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7), /* Summer halo */
+                0 0 20px rgba(255, 215, 0, 0.5);
+}
+.break-mode #mode::before {
+    content: "☀️";
+}
+.break-mode #mode::after {
+    content: "☀️";
+}
+.break-mode #time {
+    color: #FFD700; /* Gold */
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.6),
+                 0 0 20px rgba(255, 215, 0, 0.4);
+}
+.break-mode #total-time {
+    color: #00FF7F; /* Spring green */
+    text-shadow: 0 0 5px rgba(0, 255, 127, 0.4);
+    background: rgba(0, 255, 127, 0.3); /* Spring green bg */
+}
+.break-mode #start-btn {
+    background: linear-gradient(135deg, #FF69B4, #00FF7F); /* Hot pink to spring green */
+}
+.break-mode #stop-btn {
+    background: linear-gradient(135deg, #40E0D0, #FFD700); /* Turquoise to gold */
+}
+.break-mode #reset-btn {
+    background: linear-gradient(135deg, #FF69B4, #40E0D0); /* Hot pink to turquoise */
+}
+
+/* Progress ring */
+#progress-ring { 
+    display: none; /* Hidden by default (work mode) */
+    justify-content: center; 
+    margin: 12px 0 6px; 
+}
+.break-mode #progress-ring {
+    display: flex; /* Show only in break mode */
+}
+#progress-ring svg { 
+    transform: rotate(-90deg); 
+    width: 120px; 
+    height: 120px; 
+}
+#progress-bg {
+    fill: transparent;
+    stroke: rgba(255,255,255,0.1);
+    stroke-width: 10;
+}
+#progress-circle {
+    fill: transparent;
+    stroke: #FF69B4; /* Hot pink for break */
+    stroke-width: 10;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+}
+
+/* Session Log Section */
+#session-log-section {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+#session-log-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.4em;
+    color: #ffb7c5;
+    text-shadow: 0 0 8px rgba(255, 183, 197, 0.5);
+    background: rgba(144, 238, 144, 0.2);
+    border: 2px dashed #FFB7C5;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#session-log-label::before, #session-log-label::after {
+    content: "📜";
+    font-size: 1.2em;
+}
+#clear-log-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #808080, #A9A9A9); /* Muted gray to dark gray */
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Press Start 2P', monospace;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    transition: background 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+#clear-log-btn:hover {
+    background: linear-gradient(135deg, #A9A9A9, #C0C0C0); /* Dark gray to silver */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(128, 128, 128, 0.4);
+}
+#session-log {
+    list-style: none;
+    padding: 0; 
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Newest at top with prepending */
+    gap: 15px;
+}
+.session-entry {
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 15px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.session-entry:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+.session-entry.work { 
+    background: rgba(173, 216, 230, 0.2); /* Light blue tint for work */
+    border-left: 5px solid #6699ff; 
+}
+.session-entry.break { 
+    background: rgba(64, 224, 208, 0.2); /* Turquoise tint for break */
+    border-left: 5px solid #ff6666; 
+}
+.session-time {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1em;
+}
+.session-time.work {
+    color: #F0F8FF; /* Alice blue for work */
+}
+.session-time.break {
+    color: #FFD700; /* Gold for break */
+}
+.session-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1em;
+}
+.session-label.work {
+    color: #ADD8E6; /* Light blue for work */
+}
+.session-label.work::before {
+    content: "❄️ ";
+}
+.session-label.break {
+    color: #FF69B4; /* Hot pink for break */
+}
+.session-label.break::before {
+    content: "☀️ ";
+}
