@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flowmodoro</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="background-gif"></div>
+    <div id="particles-container"></div>
+    <audio id="bell-sound" src="bell.wav"></audio>
+    <header>
+      <h1 id="header-text">Flowmodoro</h1>
+    </header>
+    <main>
+      <section id="task-section" class="standby-mode">
+        <div id="tasks-label">Tasks (0)</div>
+        <button id="toggle-tasks-btn">Hide Tasks</button>
+        <div id="task-input">
+          <input type="text" id="new-task" placeholder="Enter task..." />
+          <button id="add-task-btn">🦋 Add 🦋</button>
+        </div>
+        <ul id="task-list"></ul>
+      </section>
+      <section id="timer-section" class="standby-mode">
+        <div id="mode">Standby</div>
+        <div id="progress-ring">
+          <svg>
+            <circle id="progress-bg" cx="100" cy="100" r="90"></circle>
+            <circle id="progress-circle" cx="100" cy="100" r="90"></circle>
+          </svg>
+        </div>
+        <div id="time">00:00</div>
+        <div id="total-time">Total Work Time: 00:00</div>
+        <div id="timer-buttons">
+          <button id="start-btn">Start</button>
+          <button id="stop-btn" disabled>Stop Work</button>
+          <button id="reset-btn" disabled>Reset</button>
+        </div>
+      </section>
+      <section id="session-log-section" class="standby-mode">
+        <div id="session-log-label">Session Log (0 Work, 0 Break)</div>
+        <div class="log-buttons">
+          <button id="clear-log-btn">🗑️ Clear Log 🗑️</button>
+          <button id="toggle-log-btn">Hide Log</button>
+        </div>
+        <ul id="session-log"></ul>
+      </section>
+    </main>
+  </body>
+</html>
